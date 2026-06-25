@@ -71,8 +71,8 @@ function App() {
       async () => {
         // 流式失败，回退到非流式
         try {
-          const { default: api } = await import('./api');
-          const r = await api.chat(query);
+          const { chat: apiChat } = await import('./api');
+          const r = await apiChat(query);
           assistantMsg.content = r.answer;
           assistantMsg.sources = r.sources;
           setMessages(prev => [...prev.slice(0, -1), { ...assistantMsg }]);
